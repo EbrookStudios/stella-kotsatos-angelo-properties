@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Home at 1755 Mahoning Ave NW</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link rel="icon" href="EbrookStudios.webp" type="image/webp">
+    <meta property="og:title" content="Beautiful Home at 1755 Mahoning Ave NW">
+    <meta property="og:description" content="With its blend of historic charm and modern updates, this beautifully maintained, 5-bedroom, 2-full bath home is waiting for you.">
+    <meta property="og:image" content="EbrookStudios.webp">
+    <meta property="og:url" content="https://your-github-page-url">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #000; color: #d4af37; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; background: #333; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); transition: transform 0.3s; }
+        .container:hover { transform: scale(1.02); }
+        .header, .info, .gallery, .details, .agent, .interest { margin-bottom: 20px; }
+        .header h1, .header h2 { margin: 0; padding: 10px 0; color: #d4af37; }
+        .header { border-bottom: 4px solid #d4af37; padding-bottom: 20px; position: relative; }
+        .header .ebrook-logo { position: absolute; top: 10px; right: 10px; width: 100px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        .gallery a { position: relative; }
+        .gallery a img { width: 100%; height: auto; transition: opacity 0.5s ease-in-out; cursor: pointer; border-radius: 10px; }
+        .gallery a img:hover { opacity: 0.8; }
+        .gallery a::after { content: ""; position: absolute; bottom: 5px; right: 5px; background: url('ebrook_watermark.png') no-repeat; background-size: 50px 50px; width: 50px; height: 50px; opacity: 0.7; pointer-events: none; }
+        .details h3, .details p, .details ul { margin: 0 0 10px 0; color: #d4af37; }
+        .details ul { list-style-type: disc; padding-left: 20px; }
+        .contact-button, .call-now, .interest button { display: block; padding: 10px 20px; background-color: #d4af37; color: #000; text-align: center; text-decoration: none; border-radius: 4px; margin-top: 20px; cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
+        .contact-button:hover, .call-now:hover, .interest button:hover { background-color: #fff; color: #000; transform: scale(1.1); }
+        .map { width: 100%; height: 400px; background: #eee; margin-bottom: 20px; border-radius: 10px; }
+        footer { text-align: center; padding: 20px; background: #000; color: #d4af37; }
+        footer .ebrook-logo { width: 50px; margin-top: 10px; }
+        .agent img { width: 150px; border-radius: 50%; }
+        .agent { display: flex; align-items: center; }
+        .agent-info { margin-left: 20px; }
+        @media (max-width: 768px) {
+            .agent { flex-direction: column; align-items: flex-start; }
+            .agent img { margin-bottom: 20px; }
+        }
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 1; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
+        .modal-content { background-color: #333; margin: auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; color: #d4af37; border-radius: 10px; }
+        .close { color: #d4af37; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover, .close:focus { color: #fff; text-decoration: none; cursor: pointer; }
+        /* Collapsible Section */
+        .collapsible { background-color: #444; color: #d4af37; cursor: pointer; padding: 10px; width: 100%; border: none; text-align: left; outline: none; font-size: 18px; }
+        .active, .collapsible:hover { background-color: #555; }
+        .content { padding: 0 18px; display: none; overflow: hidden; background-color: #333; color: #d4af37; }
+        /* Watermark for Fancybox */
+        .fancybox-caption::after { content: ""; position: absolute; bottom: 10px; right: 10px; background: url('ebrook_watermark.png') no-repeat; background-size: 100px 100px; width: 100px; height: 100px; opacity: 0.7; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Beautiful Home at 1755 Mahoning Ave NW</h1>
+            <h2>Listed by: Stella Kotsatos-Angelo, CENTURY 21 Lakeside Realty</h2>
+            <p>Brokered by: CENTURY 21 Lakeside Realty | Contact: (330) 550-9898</p>
+            <img src="ebrook_logo.png" alt="Ebrook Studios Logo" class="ebrook-logo">
+            <a class="contact-button" onclick="openContactModal()">Contact Me to View This Property</a>
+        </div>
+
+        <!-- Agent Section -->
+        <div class="agent">
+            <img src="profile.jpg" alt="Agent Photo">
+            <div class="agent-info">
+                <h2>Stella Kotsatos-Angelo</h2>
+                <p>CENTURY 21 Lakeside Realty</p>
+                <p>Contact: (330) 550-9898</p>
+                <a href="tel:+13305509898" class="call-now">Call Now</a>
+                <a href="https://www.lakesiderealtyhomes.com/users/stella-kotsatos-angelo" class="call-now" style="background-color: transparent; color: #d4af37; text-decoration: underline; font-size: 0.8em;">More About Me</a>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="gallery">
+            <!-- JavaScript will insert images here -->
+        </div>
+
+        <!-- Property Details Section -->
+        <div class="details">
+            <h3>Property Details</h3>
+            <p><strong>Address:</strong> 1755 Mahoning Ave NW, Warren, OH 44483</p>
+            <p><strong>Price:</strong> $150,000</p>
+            <p><strong>Description:</strong> With its blend of historic charm and modern updates, 1755 Mahoning Ave NW is ready to be your new home. This beautifully maintained, 5-bedroom, 2-full bath home is waiting for you. It is move in ready! The home features generous living spaces, including a bright and airy living room with large windows and fireplace, perfect for family gatherings or entertaining guests. The modern kitchen is equipped with stainless steel appliances and ample cabinetry, making it a delightful space for meal preparation and casual dining. The home includes well-appointed bedrooms with plenty of natural light, and gorgeous hardwood floors. Conveniently located on Mahoning Ave, this property offers easy access to local amenities, schools, parks, and shopping centers. The vibrant downtown Warren area is just a few miles away providing a variety of dining and entertainment spots. Don’t miss the opportunity to see this beautiful home. Schedule a viewing today!</p>
+            <h3>Features</h3>
+            <ul>
+                <li>5 Bedrooms</li>
+                <li>2 Full Bathrooms</li>
+                <li>Spacious Backyard</li>
+                <li>Modern Kitchen with Stainless Steel Appliances</li>
+                <li>Bright and Airy Living Room with Fireplace</li>
+                <li>Gorgeous Hardwood Floors</li>
+                <li>Convenient Location</li>
+            </ul>
+            <button type="button" class="collapsible">View More Details</button>
+            <div class="content">
+                <h3>Additional Property Details</h3>
+                <ul>
+                    <li><strong>MLS#:</strong> 5050134</li>
+                    <li><strong>Prop Type:</strong> Residential</li>
+                    <li><strong>Status:</strong> Active</li>
+                    <li><strong>Sub Type:</strong> Single Family Residence</li>
+                    <li><strong>List Price:</strong> $174,000</li>
+                    <li><strong>DOM/CDOM:</strong> 0/0</li>
+                    <li><strong>List Dt Rec:</strong> 07/08/2024</li>
+                    <li><strong>List Date:</strong> 07/08/2024</li>
+                    <li><strong>County:</strong> Trumbull</li>
+                    <li><strong>Parcel ID:</strong> Realist Tax 39-474061 39-474060</li>
+                    <li><strong>Twp:</strong> Warren</li>
+                    <li><strong>Subdiv:</strong> Mahoning Blvd</li>
+                    <li><strong>School Dist:</strong> Warren CSD - 7820</li>
+                    <li><strong>Bedrooms:</strong> 5</li>
+                    <li><strong>Stories:</strong> 2</li>
+                    <li><strong>Total Baths:</strong> 2 (2/0)</li>
+                    <li><strong>Yr Built:</strong> 1898/Public Records</li>
+                    <li><strong>Levels:</strong> Two</li>
+                    <li><strong>Liv Area:</strong> 2076/804/2880</li>
+                    <li><strong>$/SqFt:</strong> $83.82</li>
+                    <li><strong>Acres:</strong> 0.38</li>
+                    <li><strong>Taxes:</strong> $1,148</li>
+                    <li><strong>Tax Year:</strong> 2023</li>
+                    <li><strong>Assessment:</strong> No</li>
+                    <li><strong>Homestead:</strong> No</li>
+                    <li><strong>Legal:</strong> 20 2 54.93F 0.225APER SURVEY MAH BLVD PT MAH AVE</li>
+                    <li><strong>Beds Main:</strong> 1</li>
+                    <li><strong>Full Baths:</strong> 1 (Main), 1 (Upper)</li>
+                    <li><strong>Half Baths:</strong> 0</li>
+                    <li><strong>Laundry:</strong> 1 (Upper)</li>
+                    <li><strong># Rooms:</strong> 9</li>
+                    <li><strong># FP:</strong> 1</li>
+                    <li><strong>SqFt Approximate FINISHED/Source:</strong> Above Gr: 2,076 (Auditors Website), Below Gr: 804 (Auditors Website), TOTAL: 2,880</li>
+                    <li><strong>Lot Dim:</strong> 109.88 X irreg</li>
+                    <li><strong>Lot Sz Src:</strong> Auditors Website</li>
+                    <li><strong>Architect Style:</strong> Colonial</li>
+                    <li><strong>Prop Attached:</strong> No</li>
+                    <li><strong>Prop Condtn:</strong> Actual YBT, Updated/Remodeled</li>
+                    <li><strong>Basement:</strong> Yes, Unfinished</li>
+                    <li><strong>Heating:</strong> Forced Air, Gas</li>
+                    <li><strong>Cooling:</strong> Central Air</li>
+                    <li><strong>Appliances:</strong> Dishwasher, Microwave, Range, Smoke Detector</li>
+                    <li><strong>Fireplace:</strong> Yes, 1</li>
+                    <li><strong>Access Feat:</strong> None</li>
+                    <li><strong>Patio/Porch:</strong> Enclosed Patio/Porch</li>
+                    <li><strong>Direction Faces:</strong> W</li>
+                    <li><strong>Nat Rsrce Rgts:</strong> All W/O the rights</li>
+                    <li><strong>Lot Features:</strong> Corner Lot</li>
+                    <li><strong>View Desc:</strong> City</li>
+                    <li><strong>Parking:</strong> 2.0/Detached Garage, Paved</li>
+                    <li><strong>Construction:</strong> Aluminum Siding, Wood</li>
+                    <li><strong>Garage:</strong> Yes, 2.0</li>
+                    <li><strong>Roof:</strong> Asphalt/Fiberglass, Rubber</li>
+                    <li><strong>Water:</strong> Public</li>
+                    <li><strong>Sewer:</strong> Public</li>
+                    <li><strong>Fence:</strong> Chain Link</li>
+                    <li><strong>Waterfront:</strong> No</li>
+                    <li><strong>Pool:</strong> No</li>
+                    <li><strong>Community:</strong> Park</li>
+                </ul>
+                <a class="contact-button" onclick="openContactModal()">Contact Me to View This Property</a>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map" id="map"></div>
+
+        <!-- Agent Interest Form Section -->
+        <div class="interest">
+            <h3>Are you an agent and interested in getting a website like this built?</h3>
+            <button onclick="openAgentForm()">Click Here</button>
+            <form id="agent-form" action="https://formspree.io/f/mblrjvkk" method="POST" style="display: none;">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div>© 2024 Powered by Ebrook Studios. All rights reserved.</div>
+        <img src="ebrook_logo.png" alt="Ebrook Studios Logo" class="ebrook-logo">
+    </footer>
+
+    <!-- Modal for Contact Form -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeContactModal()">&times;</span>
+            <h3>Contact Me to View This Property</h3>
+            <form id="contact-form" action="https://formspree.io/f/xkgwnlzo" method="POST">
+                <input type="hidden" name="property" value="1755 Mahoning Ave NW, Warren, OH 44483">
+                <input type="hidden" name="agent" value="Stella Kotsatos-Angelo, CENTURY 21 Lakeside Realty">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="tel" name="phone" placeholder="Your Phone Number" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script>
+        const gallery = document.querySelector('.gallery');
+        const imageBaseName = 'EbrookStudios';
+        let imgIndex = 1;
+
+        function loadImage(src, alt) {
+            const link = document.createElement('a');
+            link.href = src;
+            link.setAttribute('data-fancybox', 'gallery');
+            link.setAttribute('data-caption', alt);
+
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = alt;
+            img.loading = 'lazy';
+
+            img.onerror = () => {
+                console.error(`Failed to load image: ${src}`);
+            };
+
+            link.appendChild(img);
+            gallery.appendChild(link);
+        }
+
+        // Load images
+        for (let i = 1; i <= 74; i++) { // Adjust this number based on your image count
+            const imgSrc = i === 1 ? imageBaseName : `${imageBaseName}-${i}`;
+            loadImage(`${imgSrc}.webp`, `Photo ${i}`);
+        }
+
+        // Initialize Map
+        const map = L.map('map').setView([41.2381, -80.8184], 13); // Coordinates for Warren, OH
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.marker([41.2381, -80.8184]).addTo(map)
+            .bindPopup('1755 Mahoning Ave NW')
+            .openPopup();
+
+        // Modal Functions
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Agent form function
+        function openAgentForm() {
+            document.getElementById('agent-form').style.display = 'block';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Collapsible Section
+        document.querySelectorAll('.collapsible').forEach((collapsible) => {
+            collapsible.addEventListener('click', function () {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        });
+
+        // Fancybox Customization for Watermark
+        $('[data-fancybox]').fancybox({
+            buttons: [
+                "zoom",
+                "slideShow",
+                "thumbs",
+                "close"
+            ],
+            afterLoad: function(instance, current) {
+                var watermark = $('<div class="fancybox-caption"></div>').css({
+                    'position': 'absolute',
+                    'bottom': '10px',
+                    'right': '10px',
+                    'background': 'url(ebrook_watermark.png) no-repeat',
+                    'background-size': '100px 100px',
+                    'width': '100px',
+                    'height': '100px',
+                    'opacity': '0.7',
+                });
+                $(current.$content).append(watermark);
+            }
+        });
+
+        // Disable right-click on images
+        $('img').on('contextmenu', function(e) {
+            return false;
+        });
+    </script>
+</body>
+</html>
