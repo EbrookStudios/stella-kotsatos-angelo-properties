@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,47 +11,255 @@
     <meta property="og:title" content="Beautiful Home at 1755 Mahoning Ave NW">
     <meta property="og:description" content="With its blend of historic charm and modern updates, this beautifully maintained, 5-bedroom, 2-full bath home is waiting for you.">
     <meta property="og:image" content="EbrookStudios.webp">
-    <meta property="og:url" content="https://your-github-page-url">
+    <meta property="og:url" content="https://ebrookstudios.github.io/stella-kotsatos-angelo-properties/">
     <meta name="twitter:card" content="summary_large_image">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #000; color: #d4af37; }
-        .container { max-width: 1200px; margin: auto; padding: 20px; background: #333; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
-        .header, .info, .gallery, .details, .agent, .interest { margin-bottom: 20px; }
-        .header h1, .header h2 { margin: 0; padding: 10px 0; color: #d4af37; }
-        .header { border-bottom: 4px solid #d4af37; padding-bottom: 20px; position: relative; }
-        .header .ebrook-logo { position: absolute; top: 10px; right: 10px; width: 100px; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-        .gallery a { position: relative; }
-        .gallery a img { width: 100%; height: auto; transition: opacity 0.5s ease-in-out; cursor: pointer; border-radius: 10px; }
-        .gallery a img:hover { opacity: 0.8; }
-        .gallery a::after { content: ""; position: absolute; bottom: 5px; right: 5px; background: url('ebrook_watermark.png') no-repeat; background-size: 50px 50px; width: 50px; height: 50px; opacity: 0.7; pointer-events: none; }
-        .details h3, .details p, .details ul { margin: 0 0 10px 0; color: #d4af37; }
-        .details ul { list-style-type: disc; padding-left: 20px; }
-        .contact-button, .call-now, .interest button { display: block; padding: 10px 20px; background-color: #d4af37; color: #000; text-align: center; text-decoration: none; border-radius: 4px; margin-top: 20px; cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
-        .contact-button:hover, .call-now:hover, .interest button:hover { background-color: #fff; color: #000; transform: scale(1.1); }
-        .map { width: 100%; height: 400px; background: #eee; margin-bottom: 20px; border-radius: 10px; }
-        footer { text-align: center; padding: 20px; background: #000; color: #d4af37; }
-        footer .ebrook-logo { width: 50px; margin-top: 10px; }
-        .agent img { width: 150px; border-radius: 50%; }
-        .agent { display: flex; align-items: center; }
-        .agent-info { margin-left: 20px; }
-        @media (max-width: 768px) {
-            .agent { flex-direction: column; align-items: flex-start; }
-            .agent img { margin-bottom: 20px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #d4af37;
         }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        .header,
+        .info,
+        .gallery,
+        .details,
+        .agent,
+        .interest {
+            margin-bottom: 20px;
+        }
+
+        .header h1,
+        .header h2 {
+            margin: 0;
+            padding: 10px 0;
+            color: #d4af37;
+        }
+
+        .header {
+            border-bottom: 4px solid #d4af37;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .header .ebrook-logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .gallery a {
+            position: relative;
+        }
+
+        .gallery a img {
+            width: 100%;
+            height: auto;
+            transition: opacity 0.5s ease-in-out;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .gallery a img:hover {
+            opacity: 0.8;
+        }
+
+        .gallery a::after {
+            content: "";
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: url('ebrook_watermark.png') no-repeat;
+            background-size: 50px 50px;
+            width: 50px;
+            height: 50px;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .details h3,
+        .details p,
+        .details ul {
+            margin: 0 0 10px 0;
+            color: #d4af37;
+        }
+
+        .details ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .contact-button,
+        .call-now,
+        .interest button {
+            display: block;
+            padding: 10px 20px;
+            background-color: #d4af37;
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .contact-button:hover,
+        .call-now:hover,
+        .interest button:hover {
+            background-color: #fff;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .map {
+            width: 100%;
+            height: 400px;
+            background: #eee;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000;
+            color: #d4af37;
+        }
+
+        footer .ebrook-logo {
+            width: 50px;
+            margin-top: 10px;
+        }
+
+        .agent img {
+            width: 150px;
+            border-radius: 50%;
+        }
+
+        .agent {
+            display: flex;
+            align-items: center;
+        }
+
+        .agent-info {
+            margin-left: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .agent {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .agent img {
+                margin-bottom: 20px;
+            }
+        }
+
         /* Modal Styles */
-        .modal { display: none; position: fixed; z-index: 1; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
-        .modal-content { background-color: #333; margin: auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; color: #d4af37; border-radius: 10px; }
-        .close { color: #d4af37; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .close:hover, .close:focus { color: #fff; text-decoration: none; cursor: pointer; }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            color: #d4af37;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #d4af37;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         /* Collapsible Section */
-        .collapsible { background-color: #444; color: #d4af37; cursor: pointer; padding: 10px; width: 100%; border: none; text-align: left; outline: none; font-size: 18px; }
-        .active, .collapsible:hover { background-color: #555; }
-        .content { padding: 0 18px; display: none; overflow: hidden; background-color: #333; color: #d4af37; }
+        .collapsible {
+            background-color: #444;
+            color: #d4af37;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+        }
+
+        .active,
+        .collapsible:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #333;
+            color: #d4af37;
+        }
+
         /* Watermark for Fancybox */
-        .fancybox-caption::after { content: ""; position: absolute; bottom: 10px; right: 10px; background: url('ebrook_watermark.png') no-repeat; background-size: 100px 100px; width: 100px; height: 100px; opacity: 0.7; }
+        .fancybox-caption::after {
+            content: "";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: url('ebrook_watermark.png') no-repeat;
+            background-size: 100px 100px;
+            width: 100px;
+            height: 100px;
+            opacity: 0.7;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Header Section -->
@@ -283,7 +492,7 @@
                 "thumbs",
                 "close"
             ],
-            afterLoad: function(instance, current) {
+            afterLoad: function (instance, current) {
                 var watermark = $('<div class="fancybox-caption"></div>').css({
                     'position': 'absolute',
                     'bottom': '10px',
@@ -299,9 +508,10 @@
         });
 
         // Disable right-click on images
-        $('img').on('contextmenu', function(e) {
+        $('img').on('contextmenu', function (e) {
             return false;
         });
     </script>
 </body>
+
 </html>
